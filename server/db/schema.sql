@@ -1,0 +1,11 @@
+-- DROP DATABASE IF EXISTS rnb;
+-- CREATE DATABASE rnb;
+
+-- \c rnb;
+
+-- DROP TABLE IF EXISTS users;
+
+CREATE TABLE users(
+    id VARCHAR PRIMARY KEY,
+    email VARCHAR
+);

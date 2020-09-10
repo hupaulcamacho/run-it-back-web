@@ -1,20 +1,28 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const bodyParser = require('body-parser');
+const cors = require('cors');
+require('dotenv').config();
+const userRouter = require('./routes/users')
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const PORT = process.env.PORT;
+const app = express();
 
-var app = express();
+app.use(cors());
+app.use(bodyParser.urlencoded({ extended: true}));
+app.use(bodyParser.json())
 
-app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api/users', userRouter);
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use((err, req, res, next) => {
+    console.log(err);
+    if(err.status){
+        res.status(err.status).json(err);
+    } else {
+        res.status(500).json(err)
+    }
+}) 
 
-module.exports = app;
+app.listen(PORT, () => {
+    console.log('listening on port', PORT)
+})
+

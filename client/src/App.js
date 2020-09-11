@@ -6,23 +6,27 @@ import Home from './Components/Home';
 import UsersIndex from './Components/UsersIndex';
 import SignUp from './Components/Signup';
 import Login from './Components/Login';
+import AuthProvider from './providers/AuthContext';
+import { AuthRoute, ProtectedRoute } from './util/routesUtil';
 
 function App() {
   return (
     <div className="App">
-      <NavBar />
-      <Route exact path='/'>
-        <Home />
-      </Route>
-      <Route path='/users'>
-        <UsersIndex />
-      </Route>
-      <Route path='/signup'>
-        <SignUp />
-      </Route>
-      <Route path='/login'>
-        <Login />
-      </Route>
+      <AuthProvider>
+        <NavBar />
+        <Route exact path='/'>
+          <Home />
+        </Route>
+        <ProtectedRoute path='/users'>
+          <UsersIndex />
+        </ProtectedRoute>
+        <AuthRoute path='/signup'>
+          <SignUp />
+        </AuthRoute>
+        <AuthRoute path='/login'>
+          <Login />
+        </AuthRoute>
+      </AuthProvider>
     </div>
   );
 }

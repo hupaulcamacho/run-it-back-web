@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
-import { apiURL } from '../util/apiURL'
+import { apiURL } from '../util/apiURL';
+import { signUp } from '../util/firebaseFunctions';
+
 export default function SignUp() {
     const [ email, setEmail ] = useState('');
     const [ error, setError ] = useState(null)
@@ -12,6 +14,8 @@ export default function SignUp() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
+            let res = await signUp(email, password)
+            await axios.post(`${API}/api/users`, {id: res.user.uid, email})
             //sign up with firebase and send results to out backend
             history.push('/')
         } catch (err) {
@@ -29,7 +33,7 @@ export default function SignUp() {
                     onChange={(e) => setEmail(e.currentTarget.value)}
                 />
                 <input placeholder='password'
-                    type='passwordf'
+                    type='password'
                     value={password} 
                     onChange={(e) => setPassword(e.currentTarget.value)}
                     autoComplete='on'

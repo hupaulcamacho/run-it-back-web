@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
+import { login } from '../util/firebaseFunctions'
 
 export default function Login() {
     const [ email, setEmail ] = useState('');
@@ -10,6 +11,7 @@ export default function Login() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         try {
+            await login(email, password)
             // log in with firebase then change route
             history.push('/')
         } catch (err) {
@@ -26,7 +28,7 @@ export default function Login() {
                     onChange={(e) => setEmail(e.currentTarget.value)}
                 />
                 <input placeholder='password'
-                    type='passwordf'
+                    type='password'
                     value={password} 
                     onChange={(e) => setPassword(e.currentTarget.value)}
                     autoComplete='on'

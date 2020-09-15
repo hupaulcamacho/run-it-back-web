@@ -13,7 +13,7 @@ export default function Login() {
         try {
             await login(email, password)
             // log in with firebase then change route
-            history.push('/')
+            history.push('/home')
         } catch (err) {
             setError(err.message)
         }  

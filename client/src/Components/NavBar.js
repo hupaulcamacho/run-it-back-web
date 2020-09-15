@@ -21,7 +21,8 @@ export default function NavBar() {
     }
     return (
         <nav>
-            <NavLink exact to={'/'}>Home</NavLink>
+            <NavLink exact to={'/'}>RunItBack</NavLink>
+            <NavLink to={'/home'}>Home</NavLink>
             <NavLink to={'/users'}>Show All Users</NavLink>
             {displayButtons()}
         </nav>

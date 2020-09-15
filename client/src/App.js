@@ -8,15 +8,19 @@ import SignUp from './Components/Signup';
 import Login from './Components/Login';
 import AuthProvider from './providers/AuthContext';
 import { AuthRoute, ProtectedRoute } from './util/routesUtil';
+import LandingPage from './Components/LandingPage';
 
 function App() {
   return (
     <div className="App">
       <AuthProvider>
         <NavBar />
-        <Route exact path='/'>
+        <AuthRoute exact path='/'>
+          <LandingPage />
+        </AuthRoute>
+        <ProtectedRoute path='/home'>
           <Home />
-        </Route>
+        </ProtectedRoute>
         <ProtectedRoute path='/users'>
           <UsersIndex />
         </ProtectedRoute>

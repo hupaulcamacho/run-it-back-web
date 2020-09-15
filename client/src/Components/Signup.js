@@ -17,7 +17,7 @@ export default function SignUp() {
             let res = await signUp(email, password)
             await axios.post(`${API}/api/users`, {id: res.user.uid, email})
             //sign up with firebase and send results to out backend
-            history.push('/')
+            history.push('/home')
         } catch (err) {
             setError(err.message)
         }

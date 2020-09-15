@@ -10,7 +10,7 @@ export const AuthRoute = ({children, ...rest}) => {
             {...rest}
             render={({ location }) => {
                 return !currentUser ? 
-                children : <Redirect to='/'/>
+                children : <Redirect to='/home'/>
             }}
         />
     )

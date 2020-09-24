@@ -1,7 +1,7 @@
--- DROP DATABASE IF EXISTS rnb;
--- CREATE DATABASE rnb;
+DROP DATABASE IF EXISTS rnb;
+CREATE DATABASE rnb;
 
--- \c rnb;
+\c rnb;
 
 -- DROP TABLE IF EXISTS users;
 
@@ -15,8 +15,9 @@ CREATE TABLE users(
 CREATE TABLE posts
 (
     id SERIAL PRIMARY KEY,
-    poster_id VARCHAR references users(id),
-    post_body VARCHAR
+    poster_id VARCHAR REFERENCES users(id),
+    post_body VARCHAR,
+    deleted BOOLEAN
 );
 
 CREATE TABLE comments

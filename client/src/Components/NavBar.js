@@ -7,9 +7,16 @@ import { AuthContext } from '../providers/AuthContext';
 
 export default function NavBar() {
     const { currentUser } = useContext(AuthContext);
-    const displayButtons = () => {
+    const displayNav = () => {
         if(currentUser) {
-            return <button onClick={logout}>Logout</button>
+            return (
+                <>
+                    <NavLink to={'/home'}>Home</NavLink>
+                    <NavLink to={'/users'}>Show All Users</NavLink>
+                    <button onClick={logout}>Logout</button>
+                </>
+                
+            )
         } else {
             return(
                 <>
@@ -22,9 +29,7 @@ export default function NavBar() {
     return (
         <nav>
             <NavLink exact to={'/'}>RunItBack</NavLink>
-            <NavLink to={'/home'}>Home</NavLink>
-            <NavLink to={'/users'}>Show All Users</NavLink>
-            {displayButtons()}
+            {displayNav()}
         </nav>
     )
 }

@@ -7,7 +7,6 @@ posts.post('/', createPost);
 posts.patch('/delete', deletePost);
 posts.patch('/restore', restorePost);
 
-
 module.exports = posts
 
 

@@ -16,6 +16,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage})
 
 users.post('/', upload.single('file'), createUser);
-users.get('/', checkFirebaseToken, getAllUsers)
+users.get('/', /* checkFirebaseToken,*/ getAllUsers)
 
 module.exports = users;

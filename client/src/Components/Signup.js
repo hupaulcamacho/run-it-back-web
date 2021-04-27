@@ -16,7 +16,6 @@ export default function SignUp() {
     const handleSubmit = async(e) => {
         e.preventDefault();
         
-
         try {
             const fd = new FormData();
             fd.append('file', file);

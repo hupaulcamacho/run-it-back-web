@@ -1,11 +1,11 @@
 const users = require('express').Router();
 const multer = require('multer');
-const { createUser, getAllUsers } = require('../queries/users');
+const { createUser, getAllUsers, getUserById } = require('../queries/users');
 const { checkFirebaseToken } = require('../middleware/auth');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, './public/data/uploads');
+        cb(null, '/public/data/uploads');
     },
     filename: (req, file, cb)  => {
         let name = file.originalname;
@@ -17,5 +17,7 @@ const upload = multer({ storage: storage})
 
 users.post('/', upload.single('file'), createUser);
 users.get('/', /* checkFirebaseToken,*/ getAllUsers)
+users.get('/id/:id', /* checkFirebaseToken,*/ getUserById)
+
 
 module.exports = users;

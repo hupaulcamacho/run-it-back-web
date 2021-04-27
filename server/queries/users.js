@@ -1,7 +1,7 @@
 const db = require('../db/index');
 
 const createUser = async (req, res, next) => {
-    let videoURL = `http://localhost:3100/${req.file.path.replace('public/', '')}`;
+    let videoURL = `http://localhost:3001/${req.file.path.replace('public/', '')}`;
 
     let insertData = {
         id: req.body.id,
@@ -34,7 +34,20 @@ const getAllUsers = async (req, res, next) => {
     }
 }
 
+const getUserById = async (req, res, next) => {
+    try {
+        const user = await db.any('SELECT * FROM users WHERE id=$1', [ req.params.id ])
+        res.json({
+            user,
+            message: 'Retrieved user.'
+        })
+    } catch (err) {
+        next(err)
+    }
+}
+
 module.exports = {
     createUser,
-    getAllUsers
+    getAllUsers,
+    getUserById
 }

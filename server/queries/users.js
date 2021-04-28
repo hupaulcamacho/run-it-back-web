@@ -1,13 +1,13 @@
 const db = require('../db/index');
 
 const createUser = async (req, res, next) => {
-    let videoURL = `http://localhost:3001/${req.file.path.replace('public/', '')}`;
+    let imgURL = `http://localhost:3001/${req.file.path.replace('public/', '')}`;
 
     let insertData = {
         id: req.body.id,
         email: req.body.email,
         username: req.body.username,
-        profile_img: videoURL
+        profile_img: imgURL
     }
 
     try {

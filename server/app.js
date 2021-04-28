@@ -1,4 +1,5 @@
 const express = require('express');
+const path = require('path');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
@@ -10,11 +11,14 @@ const PORT = process.env.PORT;
 const app = express();
 
 app.use(cors());
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.urlencoded({ extended: true}));
 app.use(bodyParser.json())
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/api/users', userRouter);
 app.use('/api/posts', postRouter)
+
 
 app.use((err, req, res, next) => {
     console.log(err);

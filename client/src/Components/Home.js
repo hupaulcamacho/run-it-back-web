@@ -13,9 +13,10 @@ export default function Home(params) {
             let res = await axios.get(`${API}/api/users/id/${currentUser.id}`)
             setUser(res.data.user[0])
         }
-        fetchUser()
-    })
 
+        fetchUser()
+    }, [])
+    console.log(user)
     return(
         <div className='landing-main'>
             Homepage

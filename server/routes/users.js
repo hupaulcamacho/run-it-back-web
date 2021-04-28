@@ -5,7 +5,7 @@ const { checkFirebaseToken } = require('../middleware/auth');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-        cb(null, '/public/data/uploads');
+        cb(null, 'uploads/');
     },
     filename: (req, file, cb)  => {
         let name = file.originalname;
